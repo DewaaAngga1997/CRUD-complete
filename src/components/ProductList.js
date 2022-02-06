@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const ProductLis = () => {
   const [product, setProduct] = useState([]);
@@ -16,7 +17,10 @@ const ProductLis = () => {
 
   return (
     <div className="m-[50px]">
-      <table className="table-auto w-full border-2 to-black">
+      <Link to="/add" className="text-black hover:text-white bg-green-300 hover:bg-green-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-8 py-2.5 text-center">
+        Add Product
+      </Link>
+      <table className="mt-5 table-auto w-full border-2 to-black">
         <thead className="text-xl font-semibold uppercase bg-blue-50">
           <tr>
             <th className="p-2 whitespace-nowrap">No</th>
