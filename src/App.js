@@ -1,13 +1,22 @@
 import './index.css';
 import ProductList from './components/ProductList';
+import AddProduct from './components/AddProduct';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="container mx-auto px-4ainer">
-      <div className="columns-1"></div>
-      <div className="columns-4"></div>
-      <ProductList />
-    </div>
+    <Router>
+      <div className="container mx-auto px-4ainer">
+        <div className="columns-1"></div>
+        <div className="columns-4"></div>
+        <Routes>
+          <Route exact path="/" element={<ProductList />}></Route>
+        </Routes>
+        <Routes>
+          <Route exact path="/add" element={<AddProduct />}></Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
