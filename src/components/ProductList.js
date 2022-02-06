@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 const ProductLis = () => {
   const [product, setProduct] = useState([]);
 
+  //agar data bisa di edit di ketik hapus
   useEffect(() => {
     getProduct();
   }, []);
@@ -15,6 +16,11 @@ const ProductLis = () => {
     setProduct(response.data);
   };
 
+  const deleteProduct = async (id) => {
+    await axios.delete(`http://localhost:5000/products/${id}`);
+    //tambahkan get produk agar bisa melihat perubahannya
+    getProduct();
+  };
   return (
     <div className="m-[50px]">
       <Link to="/add" className="text-black hover:text-white bg-green-300 hover:bg-green-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-8 py-2.5 text-center">
@@ -43,8 +49,12 @@ const ProductLis = () => {
               </td>
               <td className="p-2 whitespace-nowrap">
                 <div className="text-center">
-                  <button className=" bg-blue-300  hover:bg-blue-500  text-black hover:text-white  p-2 px-5 rounded-full">Edit</button>
-                  <button className=" bg-red-300  hover:bg-red-500  text-black hover:text-white p-2 px-5 rounded-full">Delete</button>
+                  <Link to={`/edit/${product.id}`} className=" bg-blue-300  hover:bg-blue-500  text-black hover:text-white  p-2 px-5 rounded-full">
+                    Edit
+                  </Link>
+                  <button onClick={() => deleteProduct(product.id)} className=" bg-red-300  hover:bg-red-500  text-black hover:text-white p-2 px-5 rounded-full">
+                    Delete
+                  </button>
                 </div>
               </td>
             </tr>
